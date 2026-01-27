@@ -1,14 +1,12 @@
 #include <iostream>
 using namespace std;
 
-// Recursive XOR from 1 to n
 int xorRange(int n) {
     if (n == 0)
         return 0;
     return n ^ xorRange(n - 1);
 }
 
-// Recursive XOR of array elements
 int xorArray(int arr[], int n) {
     if (n == 0)
         return 0;
