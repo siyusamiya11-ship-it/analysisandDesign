@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-// Recursive function to calculate velocity
+
 int velocity(int u, int a, int t)
 {
-    // Base case
+
     if (t == 0)
         return u;
 
