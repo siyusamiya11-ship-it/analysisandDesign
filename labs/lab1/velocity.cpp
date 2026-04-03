@@ -8,7 +8,7 @@ int velocity(int u, int a, int t)
     if (t == 0)
         return u;
 
-    // Recursive case
+  
     return velocity(u, a, t - 1) + a;
 }
 
