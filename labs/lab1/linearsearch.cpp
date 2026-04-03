@@ -1,56 +1,56 @@
 #include <iostream>
-#include <cstdlib>   
-#include <ctime>    
-using namespace std;
+#include <cstdlib>      // for rand()
+#include <ctime>        // for time()
+#include <chrono>       // for time measurement
 
-int linearSearch(int arr[], int n, int key)
-{
-    for (int i = 0; i < n; i++)
-    {
-        if (arr[i] == key)
-            return i;  
+using namespace std;
+using namespace chrono;
+
+// Linear Search Function
+int linearSearch(int arr[], int n, int key) {
+    for(int i = 0; i < n; i++) {
+        if(arr[i] == key)
+            return i;   // return index if found
     }
-    return -1;         
+    return -1;  // not found
 }
 
-int main()
-{
-    int n, key;
-
+int main() {
+    int n;
     cout << "Enter size of array: ";
     cin >> n;
 
     int arr[n];
 
-    
+    // Seed random number generator
     srand(time(0));
 
-    
-    cout << "Generated array:\n";
-    for (int i = 0; i < n; i++)
-    {
-        arr[i] = rand() % 1000;   
-        cout << arr[i] << " ";
+    // Generate random numbers
+    for(int i = 0; i < n; i++) {
+        arr[i] = rand() % 10000;  // numbers between 0–9999
     }
 
-    cout << "\nEnter element to search: ";
+    int key;
+    cout << "Enter element to search: ";
     cin >> key;
 
-
-    clock_t start = clock();
+    // Start time
+    auto start = high_resolution_clock::now();
 
     int result = linearSearch(arr, n, key);
 
-    clock_t end = clock();
+    // End time
+    auto stop = high_resolution_clock::now();
 
-    double timeTaken = double(end - start) / CLOCKS_PER_SEC;
+    // Calculate duration in nanoseconds
+    auto duration = duration_cast<nanoseconds>(stop - start);
 
-    if (result != -1)
+    if(result != -1)
         cout << "Element found at index: " << result << endl;
     else
         cout << "Element not found" << endl;
 
-    cout << "Time taken: " << timeTaken << " seconds" << endl;
+    cout << "Time taken: " << duration.count() << " nanoseconds" << endl;
 
     return 0;
 }
