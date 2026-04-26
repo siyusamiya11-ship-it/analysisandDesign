@@ -14,10 +14,10 @@ int graph[N][N] = {
 bool visited[N];
 int minCost = INT_MAX;
 
-// TSP function
+
 void tsp(int currCity, int count, int cost) {
 
-    // If all cities visited, return to start
+
     if (count == N && graph[currCity][0] > 0) {
         minCost = min(minCost, cost + graph[currCity][0]);
         return;
@@ -38,11 +38,9 @@ void tsp(int currCity, int count, int cost) {
 
 int main() {
 
-    // Initialize visited array
     for (int i = 0; i < N; i++)
         visited[i] = false;
 
-    // Start from city 0
     visited[0] = true;
 
     tsp(0, 1, 0);
