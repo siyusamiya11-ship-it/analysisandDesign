@@ -1,0 +1,41 @@
+import matplotlib.pyplot as plt
+
+def selection_sort_graph(arr):
+    n = len(arr)
+    steps = []
+    passes = []
+
+    # Store initial state
+    steps.append(arr.copy())
+    passes.append(0)
+
+    # Selection sort
+    for i in range(n):
+        min_idx = i
+
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+
+        # Swap
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+
+        # Store step after each pass
+        steps.append(arr.copy())
+        passes.append(i + 1)
+
+    # Plot graph
+    for i in range(len(arr)):
+        plt.plot(passes, [step[i] for step in steps], marker='o')
+
+    plt.xlabel("Pass Number")
+    plt.ylabel("Element Value")
+    plt.title("Selection Sort Visualization")
+    plt.grid()
+
+    plt.show()
+
+
+# Example
+arr = [64, 25, 12, 22, 11]
+selection_sort_graph(arr)
