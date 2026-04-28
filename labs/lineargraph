@@ -1,0 +1,29 @@
+import matplotlib.pyplot as plt
+
+def linear_search_graph(arr, target):
+    steps = []
+    indices = []
+
+    for i in range(len(arr)):
+        steps.append(i + 1)     # Step number
+        indices.append(i)       # Index being checked
+
+        if arr[i] == target:
+            print(f"Element found at index {i}")
+            break
+
+    # Plot graph
+    plt.plot(steps, indices, marker='o')
+    plt.xlabel("Steps")
+    plt.ylabel("Index Checked")
+    plt.title("Linear Search Visualization")
+    plt.grid()
+
+    plt.show()
+
+
+# Example
+arr = [2, 3, 4, 5, 6]
+target = 5
+
+linear_search_graph(arr, target)
