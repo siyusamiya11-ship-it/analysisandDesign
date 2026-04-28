@@ -1,0 +1,58 @@
+import matplotlib.pyplot as plt
+
+steps = []
+
+def merge_sort(arr):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        left = arr[:mid]
+        right = arr[mid:]
+
+        merge_sort(left)
+        merge_sort(right)
+
+        i = j = k = 0
+
+        # Merge the two halves
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                arr[k] = left[i]
+                i += 1
+            else:
+                arr[k] = right[j]
+                j += 1
+            k += 1
+
+        # Remaining elements
+        while i < len(left):
+            arr[k] = left[i]
+            i += 1
+            k += 1
+
+        while j < len(right):
+            arr[k] = right[j]
+            j += 1
+            k += 1
+
+        steps.append(arr.copy())  # store step after merge
+
+
+def plot_steps(steps):
+    passes = list(range(len(steps)))
+
+    for i in range(len(steps[0])):
+        plt.plot(passes, [step[i] for step in steps], marker='o')
+
+    plt.xlabel("Steps (Merges)")
+    plt.ylabel("Element Values")
+    plt.title("Merge Sort Visualization")
+    plt.grid()
+    plt.show()
+
+
+# Example
+arr = [5, 2, 9, 1, 6]
+steps.append(arr.copy())
+
+merge_sort(arr)
+plot_steps(steps)
