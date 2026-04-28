@@ -1,0 +1,36 @@
+import matplotlib.pyplot as plt
+
+def bubble_sort_graph(arr):
+    n = len(arr)
+    passes = []
+    values = []
+
+    # Store initial state
+    passes.append(0)
+    values.append(arr.copy())
+
+    # Bubble sort
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+
+        # Store array after each pass
+        passes.append(i + 1)
+        values.append(arr.copy())
+
+    # Plot graph
+    for i in range(len(values[0])):
+        plt.plot(passes, [v[i] for v in values], marker='o')
+
+    plt.xlabel("Pass Number")
+    plt.ylabel("Element Value")
+    plt.title("Bubble Sort Visualization")
+    plt.grid()
+
+    plt.show()
+
+
+# Example
+arr = [5, 2, 4, 3, 1]
+bubble_sort_graph(arr)
